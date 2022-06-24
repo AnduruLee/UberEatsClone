@@ -32,7 +32,6 @@ export const localRestaurants = [
   },
 ];
 
-
 export default function RestaurantItems({ navigation, ...props }) {
   return (
     <>
@@ -40,7 +39,7 @@ export default function RestaurantItems({ navigation, ...props }) {
         <TouchableOpacity
           key={index}
           activeOpacity={1}
-          style={{ marginBottom: 30 }}
+          style={{ marginBottom: 0 }}
           onPress={() =>
             navigation.navigate("RestaurantDetail", {
               name: restaurant.name,
@@ -56,7 +55,13 @@ export default function RestaurantItems({ navigation, ...props }) {
             style={{ marginTop: 10, padding: 15, backgroundColor: "white" }}
           >
             <RestaurantImage image={restaurant.image_url} />
-            <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
+            <RestaurantInfo 
+              name={restaurant.name} 
+              rating={restaurant.rating} 
+              price={restaurant.price} 
+              categories={restaurant.categories[0].title} 
+              reviews={restaurant.review_count}
+            />
           </View>
         </TouchableOpacity>
       ))}
@@ -67,7 +72,7 @@ export default function RestaurantItems({ navigation, ...props }) {
 const RestaurantImage = (props) => (
   <>
     <Image
-      source={{uri: props.image}}
+      source={{ uri: props.image }}
       style={{ width: "100%", height: 180 }}
     />
     <TouchableOpacity style={{ position: "absolute", right: 20, top: 20 }}>
@@ -86,10 +91,8 @@ const RestaurantInfo = (props) => (
     }}
   >
     <View>
-      <Text style={{ fontSize: 15, fontWeight: "bold" }}>
-        {props.name}
-      </Text>
-      <Text style={{ fontSize: 13, color: "gray" }}>30-45 • min</Text>
+    <Text style={{ fontSize: 20, fontWeight: "bold" }}>{props.name}</Text>
+      <Text style={{ fontSize: 13, color: "gray" }}>{props.categories} • {props.price} • {props.reviews} Reviews </Text>
     </View>
     <View
       style={{
@@ -97,7 +100,7 @@ const RestaurantInfo = (props) => (
         height: 30,
         width: 30,
         alignItems: "center",
-        justifyContent: 'center',
+        justifyContent: "center",
         borderRadius: 15,
       }}
     >

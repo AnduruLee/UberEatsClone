@@ -39,7 +39,7 @@ const items = [
           marginTop: 5,
           backgroundColor: "#fff",
           paddingVertical: 10,
-          paddingLeft: 20,
+          paddingLeft: 15,
         }}
       >
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -53,7 +53,7 @@ const items = [
                   resizeMode: "contain",
                 }}
               />
-              <Text style={{ fontSize: 13, fontWeight: "900" }}>{item.text}</Text>
+              <Text style={{ fontSize: 13, fontWeight: "bold" }}>{item.text}</Text>
             </View>
           ))}
         </ScrollView>
