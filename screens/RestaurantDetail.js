@@ -37,11 +37,33 @@ const foods = [
         "https://images.themodernproper.com/billowy-turkey/production/posts/2019/Easy-italian-salad-recipe-10.jpg?w=1200&h=1200&q=82&fm=jpg&fit=crop&fp-x=0.5&fp-y=0.5&dm=1614096227&s=c0f63a30cef3334d97f9ecad14be51da",
     },
     {
-      title: "Lasagna",
-      description: "With butter lettuce, tomato and sauce bechamel",
+      title: "Ramen",
+      description: "Rich flavored broth, with selection of meats or vegetables",
       price: "$13.50",
       image:
         "https://thestayathomechef.com/wp-content/uploads/2017/08/Most-Amazing-Lasagna-2-e1574792735811.jpg",
+    },
+    {
+      title: "Bulgogi",
+      description: "Thinly sliced beef marinated in a sauce",
+      price: "$18.50",
+      image:
+        "https://www.modernhoney.com/wp-content/uploads/2019/08/Classic-Lasagna-14-scaled.jpg",
+    },
+    {
+      title: "Korean Fried Chicken",
+      description:
+        "Amazing Korean Fried Chicken with Addictively Crunchy Exterior and Sweet-and-Spicy Sauce 🔥",
+      price: "$19.20",
+      image: "https://i.ytimg.com/vi/BKxGodX9NGg/maxresdefault.jpg",
+    },
+    {
+      title: "Tacos",
+      description:
+        "Soft Corn Tortilla with Meat, Onions, and Cilantro",
+      price: "$4.50",
+      image:
+        "https://i2.wp.com/chilipeppermadness.com/wp-content/uploads/2020/11/Chilaquales-Recipe-Chilaquiles-Rojos-1.jpg",
     },
   ];
   
