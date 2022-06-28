@@ -6,6 +6,7 @@ import firebase from "../../firebase";
 
 export default function ViewCart({ navigation }) {
   const [ModalVisible, setModalVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { items, restaurantName } = useSelector(
     (state) => state.cartReducer.selectedItems
@@ -17,7 +18,19 @@ export default function ViewCart({ navigation }) {
 
   const totalUSD = total.toLocaleString("en", {
     style: "currency",
-    currency: "USD",
+    currency: {
+      symbol: '$',
+      position: 'postfix',
+      code: 'USD',
+    },
+    formats: {
+      fullWithTwoDecimals: {
+        output: 'currency',
+        mantissa: 2,
+        spaceSeparated: true,
+        thousandSeparated: true,
+      }
+    }
   });
 
   const addOrderToFireBase = () => {
@@ -84,7 +97,7 @@ export default function ViewCart({ navigation }) {
             ))}
             <View style={styles.subtotalContainer}>
               <Text style={styles.subtotalText}>Subtotal</Text>
-              <Text>{totalUSD}</Text>
+              <Text>${totalUSD}</Text>
             </View>
             <View style={{ flexDirection: "row", justifyContent: "center" }}>
               <TouchableOpacity
@@ -140,7 +153,7 @@ export default function ViewCart({ navigation }) {
             justifyContent: "center",
             flexDirection: "row",
             position: "absolute",
-            bottom: 130,
+            bottom: 350,
             zIndex: 999,
           }}
         >
@@ -167,7 +180,7 @@ export default function ViewCart({ navigation }) {
               <Text style={{ color: "white", fontSize: 20, marginRight: 30 }}>
                 View Cart
               </Text>
-              <Text style={{ color: "white", fontSize: 20 }}>{totalUSD}</Text>
+              <Text style={{ color: "white", fontSize: 20 }}>${totalUSD}</Text>
             </TouchableOpacity>
           </View>
         </View>
