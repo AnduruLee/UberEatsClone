@@ -5,12 +5,11 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-
 const styles = StyleSheet.create({
   menuItemStyle: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    margin: 20,
+    justifyContent: "space-evenly",
+    margin: 10,
   },
 
   titleStyle: {
@@ -54,7 +53,7 @@ export default function MenuItems({
             ) : (
               <BouncyCheckbox
                 iconStyle={{ borderColor: "lightgray", borderRadius: 0 }}
-                fillColor="green"
+                fillColor="black"
                 isChecked={isFoodInCart(food, cartItems)}
                 onPress={(checkboxValue) => selectItem(food, checkboxValue)}
               />
@@ -74,7 +73,7 @@ export default function MenuItems({
 }
 
 const FoodInfo = (props) => (
-  <View style={{ width: 240, justifyContent: "space-evenly" }}>
+  <View style={{ width: 200, justifyContent: "space-evenly" }}>
     <Text style={styles.titleStyle}>{props.food.title}</Text>
     <Text>{props.food.description}</Text>
     <Text>{props.food.price}</Text>
@@ -86,8 +85,8 @@ const FoodImage = ({ marginLeft, ...props }) => (
     <Image
       source={{ uri: props.food.image }}
       style={{
-        width: 100,
-        height: 100,
+        width: 90,
+        height: 90,
         borderRadius: 8,
         marginLeft: marginLeft,
       }}

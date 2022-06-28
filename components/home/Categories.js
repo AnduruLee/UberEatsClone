@@ -39,7 +39,7 @@ const items = [
           marginTop: 5,
           backgroundColor: "#fff",
           paddingVertical: 10,
-          paddingLeft: 15,
+          paddingLeft: 10,
         }}
       >
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
