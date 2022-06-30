@@ -1,9 +1,23 @@
-import { View, Text, SafeAreaView } from 'react-native';
-import React from 'react';
+import { View, Text, SafeAreaView, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import LottieView from 'lottie-react-native';
+import MenuItems from "../components/restaurantDetail/MenuItems";
+import firebase from "../firebase";
 
 export default function OrderCompleted() {
+    const [lastOrder, setLastOrder] = useState({
+        items: [
+          {
+            title: "Bologna",
+            description: "With butter lettuce, tomato and sauce bechamel",
+            price: "$13.50",
+            image:
+              "https://www.modernhoney.com/wp-content/uploads/2019/08/Classic-Lasagna-14-scaled.jpg",
+          },
+        ],
+      });
+      
     const { items, restaurantName } = useSelector(
         (state) => state.cartReducer.selectedItems
       );
@@ -13,9 +27,25 @@ export default function OrderCompleted() {
     .reduce((prev, curr) => prev + curr, 0);
     
     const totalUSD = total.toLocaleString("en", {
-        style: "currency",
-        currency: "USD",
+        style: 'currency',
+        currency: 'USD',
     });
+
+    useEffect(() => {
+        const db = firebase.firestore();
+        const unsubscribe = db
+          .collection("orders")
+          .orderBy("createdAt", "desc")
+          .limit(1)
+          .onSnapshot((snapshot) => {
+            snapshot.docs.map((doc) => {
+              setLastOrder(doc.data());
+            });
+          });
+    
+        return () => unsubscribe();
+      }, []);
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
           <View
