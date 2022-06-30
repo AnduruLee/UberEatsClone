@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import OrderItem from "./OrderItem";
 import { useSelector } from "react-redux";
 import firebase from "../../firebase";
+import LottieView from "lottie-react-native";
 
 export default function ViewCart({ navigation }) {
   const [ModalVisible, setModalVisible] = useState(false);
@@ -25,7 +26,7 @@ export default function ViewCart({ navigation }) {
   const addOrderToFireBase = () => {
     setLoading(true);
     const db = firebase.firestore();
-    db.collection("orders")
+    db.collection('orders')
       .add({
         items: items,
         restaurantName: restaurantName,
@@ -172,6 +173,28 @@ export default function ViewCart({ navigation }) {
               <Text style={{ color: "white", fontSize: 20 }}>{totalUSD}</Text>
             </TouchableOpacity>
           </View>
+        </View>
+      ) : (
+        <></>
+      )}
+      {loading ? (
+        <View
+          style={{
+            backgroundColor: 'black',
+            position: 'absolute',
+            opacity: 0.6,
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+            width: '100%',
+          }}
+        >
+          <LottieView
+            style={{ height: 200 }}
+            source={require("../../assets/animations/scanner.json")}
+            autoPlay
+            speed={3}
+          />
         </View>
       ) : (
         <></>
