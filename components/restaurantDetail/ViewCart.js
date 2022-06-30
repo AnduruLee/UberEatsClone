@@ -16,22 +16,11 @@ export default function ViewCart({ navigation }) {
     .map((item) => Number(item.price.replace("$", "")))
     .reduce((prev, curr) => prev + curr, 0);
 
-  const totalUSD = total.toLocaleString("en", {
-    style: "currency",
-    currency: {
-      symbol: '$',
-      position: 'postfix',
-      code: 'USD',
-    },
-    formats: {
-      fullWithTwoDecimals: {
-        output: 'currency',
-        mantissa: 2,
-        spaceSeparated: true,
-        thousandSeparated: true,
-      }
-    }
-  });
+    const totalUSD = total.toLocaleString("en", {
+      style: "currency",
+      currency: "USD",
+    });
+  
 
   const addOrderToFireBase = () => {
     setLoading(true);
@@ -97,7 +86,7 @@ export default function ViewCart({ navigation }) {
             ))}
             <View style={styles.subtotalContainer}>
               <Text style={styles.subtotalText}>Subtotal</Text>
-              <Text>${totalUSD}</Text>
+              <Text>{totalUSD}</Text>
             </View>
             <View style={{ flexDirection: "row", justifyContent: "center" }}>
               <TouchableOpacity
@@ -180,7 +169,7 @@ export default function ViewCart({ navigation }) {
               <Text style={{ color: "white", fontSize: 20, marginRight: 30 }}>
                 View Cart
               </Text>
-              <Text style={{ color: "white", fontSize: 20 }}>${totalUSD}</Text>
+              <Text style={{ color: "white", fontSize: 20 }}>{totalUSD}</Text>
             </TouchableOpacity>
           </View>
         </View>
